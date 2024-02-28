@@ -37,8 +37,7 @@ rectangle "Social Media" as BoundedContextCarDealership #line.dashed {
     package "Posts Subdomain" {
         entity "Post" as post <<Aggregate>> {
             Content: string
-            Image: Media
-            AuthorID: int
+            Attachment: MediaEnum
             CreatedDate: datetime
         }
 
@@ -157,8 +156,10 @@ rectangle "Social Media" as BoundedContextCarDealership #line.dashed {
         adminphonenumber "1" o--> "1" phonetypenum
     }
 
-    user "1" o-- "0..*" postidentifier
-    user "1" o-- "0..*" receipt
+    user "1" o-- "1..*" postidentifier
+    user "1" o-- "1..*" receipt
+
+    post "1..*" o-- "1" useridentifier
 
     comment o--"1" useridentifier
     admin --> post

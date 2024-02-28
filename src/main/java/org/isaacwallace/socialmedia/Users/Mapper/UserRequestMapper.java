@@ -2,7 +2,7 @@ package org.isaacwallace.socialmedia.Users.Mapper;
 
 import org.isaacwallace.socialmedia.Users.DataAccess.User;
 import org.isaacwallace.socialmedia.Users.DataAccess.UserIdentifier;
-import org.isaacwallace.socialmedia.Users.Presentation.UserRequestModel;
+import org.isaacwallace.socialmedia.Users.Presentation.Models.UserRequestModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

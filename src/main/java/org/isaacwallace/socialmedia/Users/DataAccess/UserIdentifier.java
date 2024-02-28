@@ -15,4 +15,8 @@ public class UserIdentifier {
     public UserIdentifier(){
         this.userid = UUID.randomUUID().toString();
     }
+
+    public UserIdentifier(String userid){
+        this.userid = userid;
+    }
 }
