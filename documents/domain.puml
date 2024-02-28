@@ -1,0 +1,167 @@
+@startuml
+top to bottom direction
+
+!pragma useVerticalIf on
+skinparam rectangle {
+    BorderColor Black
+}
+
+rectangle "Social Media" as BoundedContextCarDealership #line.dashed {
+    package "Users Subdomain" {
+        entity "User" as user <<Aggregate Root>> {
+            FirstName: String
+            LastName: String
+            Username: string
+            Email: string
+            Password: string
+            Bio: string
+            JoinedDate: datetime
+        }
+
+        class "User Identifier" as useridentifier <<Value Object>> {
+            +ID: UUID
+        }
+
+        class "Address" as address <<Value Object>> {
+            PostalCode: String
+            Street: String
+            City: String
+            Province: String
+            Country: String
+        }
+
+        user  o--"1" useridentifier
+        user  o--"1" address
+    }
+
+    package "Posts Subdomain" {
+        entity "Post" as post <<Aggregate>> {
+            Content: string
+            Image: Media
+            AuthorID: int
+            CreatedDate: datetime
+        }
+
+        class "Post Identifier" as postidentifier <<Value Object>> {
+            +ID: int
+        }
+
+        class "Media Enum" as mediaenum <<Enum>> {
+            + Video
+            + Image
+        }
+
+        entity "Comment" as comment <<Entity>> {
+            Content: string
+            PostID: int
+            AuthorID: int
+            CreatedDate: datetime
+        }
+
+        class "Comment Identifier" as commentidentifier <<Value Object>> {
+            +ID: int
+        }
+
+        post o->"1" postidentifier
+        post --> mediaenum
+
+        comment o--"1" commentidentifier
+
+        post o--"1..*" commentidentifier
+    }
+
+    package "Payment Subdomain" {
+        entity "Receipt" as receipt <<Entity>> {
+            subtotal: BigDecimal
+        }
+
+        class "Receipt Identifier" as receipt_id <<Value Object>> {
+            +ID: UUID
+        }
+
+        class "Curreny Enum" as currencyenum <<Value Object>> {
+            + CAD
+            + USD
+            + EUR
+            + CNY
+        }
+
+        receipt  o->"1" receipt_id
+        receipt o->"1" currencyenum
+    }
+
+    package "Messaging Subdomain" {
+        entity "Group Chat" as groupchat <<Aggregate>> {
+            ChatName: String
+        }
+
+        class "Group Chat Identifier" as groupchatid <<Value Object>> {
+            ID: UUID
+        }
+
+        entity "Message" as message <<Entity>> {
+            Content: String
+            Attachments: MediaEnum
+        }
+
+        class "Message Identifier" as messageid <<Value Object>> {
+            ID: Integer
+        }
+
+        groupchat o--"1" groupchatid
+        message o--"1" messageid
+        message o--"1" useridentifier
+        groupchat o->"1..*" messageid
+        groupchat o--"1..*" useridentifier
+    }
+
+    package "Human Resources Sub-Domain" {
+        entity "Admin" as admin <<Entity>> {
+            FirstName: String
+            LastName: String
+            Email: String
+            Salary: Decimal
+        }
+
+        class "Admin Identifier" as adminidentifier <<Value Object>> {
+            ID: UUID
+        }
+
+        class "Admin Address" as adminaddress <<Value Object>> {
+            PostalCode: String
+            Street: String
+            City: String
+            Province: String
+            Country: String
+        }
+
+        class "Admin Phone Number" as adminphonenumber <<Value Object>> {
+            number: String
+        }
+
+        class "Phone Type Enum" as phonetypenum <<Enum>> {
+            + Work
+            + Home
+            + Mobile
+        }
+
+        class "Position" as position <<Value Object>> {
+            title: String
+            positionCode: String
+        }
+
+        admin "1" --> "1" adminidentifier
+        admin "1" o--> "1" position
+        admin "1" o--> "1" adminphonenumber
+        admin "1" o--> "1" adminaddress
+        adminphonenumber "1" o--> "1" phonetypenum
+    }
+
+    user "1" o-- "0..*" postidentifier
+    user "1" o-- "0..*" receipt
+
+    comment o--"1" useridentifier
+    admin --> post
+}
+
+@enduml
