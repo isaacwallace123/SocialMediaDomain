@@ -37,7 +37,7 @@ public class UserPostsServiceImpl implements UserPostsService {
         List<Post> postList = this.postRepository.findPostsByUserid(userid);
         List<PostResponseModel> posts = this.postResponseMapper.entitiesToResponseModelList(postList);
 
-        UserPostsResponseModel userModel = this.userResponseMapper.entityToAggregateResponseModel(user);
+        UserPostsResponseModel userModel = this.userResponseMapper.postToAggregateResponseModel(user);
         userModel.setPosts(posts);
 
         return userModel;

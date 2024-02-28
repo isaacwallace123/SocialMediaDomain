@@ -7,6 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 public class ReceiptResponseModel extends RepresentationModel<ReceiptResponseModel> {
     private String receiptid;
     private String postid;
+    private String userid;
     private Double subtotal;
     private String currency;
 }

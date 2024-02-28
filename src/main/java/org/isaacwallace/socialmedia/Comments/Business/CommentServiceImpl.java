@@ -69,7 +69,7 @@ public class CommentServiceImpl implements CommentService {
         try {
             this.commentRepository.delete(comment);
         } catch(DataIntegrityViolationException exception) {
-            throw new InUseException("Post is in use by another entity, currently cannot delete.");
+            throw new InUseException("Comment is in use by another entity, currently cannot delete.");
         }
     }
 }
