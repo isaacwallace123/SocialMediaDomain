@@ -1,7 +1,6 @@
 package org.isaacwallace.socialmedia.Users.Presentation.Models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.isaacwallace.socialmedia.Common.Objects.Address;
 import org.isaacwallace.socialmedia.Posts.Presentation.Models.PostResponseModel;
 

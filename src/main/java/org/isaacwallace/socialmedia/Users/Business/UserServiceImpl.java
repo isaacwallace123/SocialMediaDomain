@@ -9,7 +9,6 @@ import org.isaacwallace.socialmedia.Users.Presentation.Models.UserRequestModel;
 import org.isaacwallace.socialmedia.Users.Presentation.Models.UserResponseModel;
 import org.isaacwallace.socialmedia.Utils.Exceptions.InUseException;
 import org.isaacwallace.socialmedia.Utils.Exceptions.InvalidInputException;
-import org.isaacwallace.socialmedia.Utils.Exceptions.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 

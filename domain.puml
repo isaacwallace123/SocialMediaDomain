@@ -163,6 +163,8 @@ rectangle "Social Media" as BoundedContextCarDealership #line.dashed {
 
     comment o--"1" useridentifier
     admin --> post
+
+    receipt "1" o-- "1" postidentifier
 }
 
 @enduml

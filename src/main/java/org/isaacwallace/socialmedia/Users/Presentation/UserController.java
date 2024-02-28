@@ -1,6 +1,5 @@
 package org.isaacwallace.socialmedia.Users.Presentation;
 
-import org.apache.catalina.connector.Response;
 import org.isaacwallace.socialmedia.Users.Business.UserService;
 import org.isaacwallace.socialmedia.Users.Presentation.Models.UserRequestModel;
 import org.isaacwallace.socialmedia.Users.Presentation.Models.UserResponseModel;

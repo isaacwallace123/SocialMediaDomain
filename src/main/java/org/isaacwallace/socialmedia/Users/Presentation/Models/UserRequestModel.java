@@ -1,14 +1,22 @@
 package org.isaacwallace.socialmedia.Users.Presentation.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.isaacwallace.socialmedia.Common.Objects.Address;
 
-@Data
+import java.util.Date;
+
+@Value
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserRequestModel {
-    private String userid;
+    String first_name;
+    String last_name;
+
+    String username;
+    String email;
+
+    String bio;
+    Date joined_date;
+
+    Address address;
 }

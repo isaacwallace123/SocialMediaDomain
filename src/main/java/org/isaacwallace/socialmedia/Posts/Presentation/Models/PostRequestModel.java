@@ -1,16 +1,17 @@
 package org.isaacwallace.socialmedia.Posts.Presentation.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.isaacwallace.socialmedia.Posts.DataAccess.Media;
 import org.springframework.hateoas.RepresentationModel;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class PostRequestModel extends RepresentationModel<PostRequestModel> {
-    private String content;
+import java.util.Date;
 
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class PostRequestModel extends RepresentationModel<PostRequestModel> {
+    String userid;
+    String content;
+    Date created_date;
+    Media media;
 }

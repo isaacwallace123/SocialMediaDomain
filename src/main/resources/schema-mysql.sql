@@ -63,4 +63,32 @@ create table if not exists posts (
     media_attachment VARCHAR (500),
 
     FOREIGN KEY (userid) REFERENCES users(userid)
-)
+);
+
+create table if not exists receipts (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+    receiptid VARCHAR (36) NOT NULL UNIQUE,
+    postid VARCHAR (36),
+    userid VARCHAR (36),
+
+    subtotal DECIMAL,
+    currency VARCHAR (36),
+
+    FOREIGN KEY (postid) REFERENCES posts(postid),
+    FOREIGN KEY (userid) REFERENCES users(userid)
+);
+
+create table if not exists comments (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+    commentid VARCHAR (36),
+    postid VARCHAR (36),
+    userid VARCHAR (36),
+
+    content VARCHAR (500),
+    created_date DATE,
+
+    FOREIGN KEY (postid) REFERENCES posts(postid),
+    FOREIGN KEY (userid) REFERENCES users(userid)
+);
