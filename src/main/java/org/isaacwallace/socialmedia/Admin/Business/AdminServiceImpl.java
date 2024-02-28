@@ -3,7 +3,7 @@ package org.isaacwallace.socialmedia.Admin.Business;
 import org.isaacwallace.socialmedia.Admin.DataAccess.Admin;
 import org.isaacwallace.socialmedia.Admin.DataAccess.AdminRepository;
 import org.isaacwallace.socialmedia.Admin.Presentation.AdminResponseModel;
-import org.isaacwallace.socialmedia.Users.Presentation.UserResponseModel;
+import org.isaacwallace.socialmedia.Utils.Exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
@@ -16,30 +16,29 @@ public class AdminServiceImpl implements AdminService {
         this.adminRepository = adminRepository;
     }
 
-    public List<UserResponseModel> getAllAdmins() {
+    public List<AdminResponseModel> getAllAdmins() {
         List<AdminResponseModel> DTOS = new ArrayList<AdminResponseModel>();
-        List<Admin> Employees = this.adminRepository.findAll();
+        /*List<Admin> Employees = this.adminRepository.findAll();
 
         Employees.forEach(employee -> {
             EmployeeResponseDTO DTO = new EmployeeResponseDTO();
             BeanUtils.copyProperties(employee, DTO);
             DTO.setEmployeeId(employee.getEmployeeIdentifier().getEmployeeId());
             DTOS.add(DTO);
-        });
+        });*/
 
         return DTOS;
     }
 
-    public UserResponseModel getAdminById(String adminid) {
-        Employee employee = employeeRepository.findEmployeeByEmployeeIdentifier_EmployeeId(employeeId);
+    public AdminResponseModel getAdminById(String adminid) {
+        Admin admin = this.adminRepository.findAdminByAdminIdentifier_Adminid(adminid);
 
-        if (employee == null) {
-            throw new NotFoundException("Unknown employee id: " + employeeId);
+        if (admin == null) {
+            throw new NotFoundException("Unknown employee id: " + adminid);
         }
 
-        EmployeeResponseDTO DTO = new EmployeeResponseDTO();
-        BeanUtils.copyProperties(employee, DTO);
-        DTO.setEmployeeId(employee.getEmployeeIdentifier().getEmployeeId());
+        AdminResponseModel DTO = new AdminResponseModel();
+        BeanUtils.copyProperties(admin, DTO);
 
         return DTO;
     }
