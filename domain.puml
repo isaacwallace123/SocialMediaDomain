@@ -6,7 +6,7 @@ skinparam rectangle {
     BorderColor Black
 }
 
-rectangle "Social Media" as BoundedContextCarDealership #line.dashed {
+rectangle "Social Media" as BoundedContextSocialMedia #line.dashed {
     package "Users Subdomain" {
         entity "User" as user <<Aggregate Root>> {
             FirstName: String
