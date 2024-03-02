@@ -1,5 +1,5 @@
 services:
-  cardealership:
+  socialmedia:
     build: .
     hostname: socialmedia
     ports:
